@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fortune Bracelet - DOMAIN</title>
+    <title>Fortune Bracelet - Lucky Genius</title>
     <style>
         * {
             margin: 0;
@@ -15,16 +15,17 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 40px 20px;
+            padding: 80px 20px 60px;
             position: relative;
+            font-family: Georgia, 'Times New Roman', Times, serif;
         }
 
-        /* Dark overlay for better text readability */
+        /* Semi-transparent dark overlay for better text readability */
         body::before {
             content: '';
             position: absolute;
@@ -32,7 +33,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.35);
             z-index: 0;
         }
 
@@ -40,60 +41,65 @@
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 1200px;
+            max-width: 1000px;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
             text-align: center;
-            gap: 40px;
+            flex: 1;
         }
 
         /* Top text: FORTUNE BRACELET */
         .top-text {
             font-family: 'Times New Roman', Times, serif;
             font-weight: bold;
-            font-size: 48pt;
-            color: #000000;
+            font-size: 32px;
+            color: #FFFFFF;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             animation: fadeIn 1s ease-out;
         }
 
-        /* Middle text: Fortune sentence with gradient */
-        .middle-text {
-            font-family: 'Times New Roman', Times, serif;
-            font-weight: bold;
-            font-style: italic;
-            font-size: 72pt;
-            color: #fbf7bc;
-            background: linear-gradient(90deg, #fbf7bc 0%, #fff9d4 50%, #fbf7bc 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
-            line-height: 1.3;
-            max-width: 90%;
-            animation: slideIn 1.2s ease-out;
+        /* Middle text: Fortune sentence - centered and elegant */
+        .middle-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
         }
 
-        /* Bottom text: DOMAIN */
+        .middle-text {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            font-weight: normal;
+            font-size: 32px;
+            color: #E8D7B5;
+            line-height: 1.7;
+            max-width: 85%;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+            animation: slideIn 1.2s ease-out;
+            /* Allows text to wrap naturally for longer sentences */
+            word-wrap: break-word;
+            hyphens: none;
+        }
+
+        /* Bottom text: - LUCKY GENIUS - */
         .bottom-text {
-            font-family: Arial, sans-serif;
+            font-family: Arial, Helvetica, sans-serif;
             font-weight: bold;
-            font-size: 40pt;
-            color: #000000;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            font-size: 18px;
+            color: #FFFFFF;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
             animation: fadeIn 1.5s ease-out;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(-20px);
+                transform: translateY(-15px);
             }
             to {
                 opacity: 1;
@@ -104,7 +110,7 @@
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: scale(0.95);
+                transform: scale(0.97);
             }
             to {
                 opacity: 1;
@@ -114,58 +120,78 @@
 
         /* Mobile responsive */
         @media (max-width: 768px) {
+            body {
+                padding: 60px 20px 50px;
+            }
+
             .top-text {
-                font-size: 32pt;
+                font-size: 26px;
+                letter-spacing: 2px;
             }
 
             .middle-text {
-                font-size: 48pt;
-                max-width: 95%;
+                font-size: 28px;
+                max-width: 90%;
+                line-height: 1.6;
             }
 
             .bottom-text {
-                font-size: 28pt;
-            }
-
-            .container {
-                gap: 30px;
+                font-size: 16px;
             }
         }
 
         @media (max-width: 480px) {
             body {
-                padding: 20px 15px;
+                padding: 50px 15px 40px;
             }
 
             .top-text {
-                font-size: 24pt;
+                font-size: 22px;
+                letter-spacing: 1.5px;
             }
 
             .middle-text {
-                font-size: 36pt;
+                font-size: 24px;
+                max-width: 92%;
             }
 
             .bottom-text {
-                font-size: 20pt;
-            }
-
-            .container {
-                gap: 25px;
+                font-size: 14px;
+                letter-spacing: 1.5px;
             }
         }
 
-        /* Extra small screens */
         @media (max-width: 360px) {
             .top-text {
-                font-size: 20pt;
+                font-size: 20px;
             }
 
             .middle-text {
-                font-size: 28pt;
+                font-size: 22px;
             }
 
             .bottom-text {
-                font-size: 18pt;
+                font-size: 13px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                padding: 40px 20px 30px;
+            }
+
+            .top-text {
+                font-size: 24px;
+            }
+
+            .middle-text {
+                font-size: 26px;
+                line-height: 1.5;
+            }
+
+            .bottom-text {
+                font-size: 15px;
             }
         }
     </style>
@@ -173,182 +199,186 @@
 <body>
     <div class="container">
         <div class="top-text">FORTUNE BRACELET</div>
-        <div class="middle-text" id="fortune">Loading...</div>
-        <div class="bottom-text">DOMAIN</div>
+
+        <div class="middle-container">
+            <div class="middle-text" id="fortune">Loading your fortune...</div>
+        </div>
+
+        <div class="bottom-text">- LUCKY GENIUS -</div>
     </div>
 
     <script>
-        // All sentences from sentences.txt
+        // All sentences from sentences.txt - converted to proper case for better readability
         const sentences = [
-            "YOUR ACTIONS WILL IMPROVE THINGS",
-            "DON'T BET ON IT",
-            "ADOPT AN ADVENTUROUS ATTITUDE",
-            "FOLLOW THE ADVICE OF EXPERTS",
-            "YOU COULD FIND YOURSELF UNABLE TO COMPROMISE",
-            "FOCUS ON YOUR HOME LIFE",
-            "INVESTIGATE AND THEN ENJOY IT",
-            "DEFINITELY",
-            "IT WILL REMAIN UNPREDICTABLE",
-            "ABSOLUTELY NOT",
-            "EXPLORE IT WITH PLAYFUL CURIOSITY",
-            "BE DELIGHTFULLY SURE OF IT",
-            "BETTER TO WAIT",
-            "IT SEEMS ASSURED",
-            "DO IT EARLY",
-            "KEEP IT TO YOURSELF",
-            "STARTLING EVENTS MAY OCCUR AS A RESULT",
-            "THE ANSWER MAY COME TO YOU IN ANOTHER LANGUAGE",
-            "YOU WILL NEED TO ACCOMMODATE",
-            "DOUBT IT",
-            "IT WILL BRING GOOD LUCK",
-            "BE PATIENT",
-            "YOU WILL FIND OUT EVERYTHING YOU'LL NEED TO KNOW",
-            "THERE IS A SUBSTANTIAL LINK TO ANOTHER SITUATION",
-            "WATCH AND SEE WHAT HAPPENS",
-            "IT WILL AFFECT HOW OTHERS SEE YOU",
-            "YOU'LL BE HAPPY YOU DID",
-            "GET IT IN WRITING",
-            "UNFAVORABLE AT THIS TIME",
-            "UPGRADE ANY WAY YOU CAN",
-            "IF YOU DO AS YOU'RE TOLD",
-            "IF IT'S DONE WELL; IF NOT, DON'T DO IT AT ALL",
-            "DON'T ASK FOR ANY MORE AT THIS TIME",
-            "AVOID THE FIRST SOLUTION",
-            "YOU'LL GET THE FINAL WORD",
-            "PROCEED AT A MORE RELAXED PACE",
-            "THE BEST SOLUTION MAY NOT BE THE OBVIOUS ONE",
-            "REMAIN FLEXIBLE",
-            "THAT'S OUT OF YOUR CONTROL",
-            "PROVIDED YOU SAY \"THANK YOU\"",
-            "ENJOY THE EXPERIENCE",
-            "APPROACH CAUTIOUSLY",
-            "PAY ATTENTION TO THE DETAILS",
-            "WATCH YOUR STEP AS YOU GO",
-            "SPEAK UP ABOUT IT",
-            "DON'T HESITATE",
-            "THIS IS A GOOD TIME TO MAKE A NEW PLAN",
-            "MOVE ON",
-            "THERE IS NO GUARANTEE",
-            "THE CIRCUMSTANCES WILL CHANGE VERY QUICKLY",
-            "DON'T GET CAUGHT UP IN YOUR EMOTIONS",
-            "SHIFT YOUR FOCUS",
-            "IT IS SIGNIFICANT",
-            "REPRIORITIZE WHAT IS IMPORTANT",
-            "MAKE A LIST OF WHY NOT",
-            "DON'T WAIT",
-            "IT IS SOMETHING YOU WON'T FORGET",
-            "EXPECT TO SETTLE",
-            "SEEK OUT MORE OPTIONS",
-            "FOLLOW THROUGH ON YOUR OBLIGATIONS",
-            "DEAL WITH IT LATER",
-            "FOLLOW SOMEONE ELSE'S LEAD",
-            "MAKE A LIST OF WHY",
-            "TAKE A CHANCE",
-            "ACCEPT A CHANGE TO YOUR ROUTINE",
-            "YOU'LL NEED TO TAKE THE INITIATIVE",
-            "YOU'LL HAVE TO COMPROMISE",
-            "YOU'LL NEED MORE INFORMATION",
-            "TRUST YOUR ORIGINAL THOUGHT",
-            "IT WILL CREATE A STIR",
-            "REMOVE YOUR OWN OBSTACLES",
-            "IT WOULD BE BETTER TO FOCUS ON YOUR WORK",
-            "IT WILL BE A PLEASURE",
-            "BE MORE GENEROUS",
-            "BET ON IT",
-            "FINISH SOMETHING ELSE FIRST",
-            "YOU MAY HAVE OPPOSITION",
-            "YOU ARE TOO CLOSE TO SEE",
-            "THE SITUATION IS UNCLEAR",
-            "A SUBSTANTIAL EFFORT WILL BE REQUIRED",
-            "ALLOW YOURSELF TO REST FIRST",
-            "THE CHANCE WILL NOT COME AGAIN SOON",
-            "RECONSIDER YOUR APPROACH",
-            "IT WOULD BE INADVISABLE",
-            "WAIT FOR A BETTER OFFER",
-            "SETTLE IT SOON",
-            "YES, BUT DON'T FORCE IT",
-            "GET A CLEARER VIEW",
-            "TAKE A CHANCE",
-            "NOW YOU CAN",
-            "DON'T OVERDO IT",
-            "IT WILL SUSTAIN YOU",
-            "IT'LL COST YOU",
-            "IT IS SURE TO MAKE THINGS INTERESTING",
-            "BE PRACTICAL",
-            "SAVE YOUR ENERGY",
-            "IT IS CERTAIN",
-            "IT IS UNCERTAIN",
-            "THE OUTCOME WILL BE POSITIVE",
-            "NO MATTER WHAT",
-            "YOU MAY HAVE TO DROP OTHER THINGS",
-            "DON'T BE CONCERNED",
-            "PREPARE FOR THE UNEXPECTED",
-            "IT IS NOT SIGNIFICANT",
-            "TELL SOMEONE WHAT IT MEANS TO YOU",
-            "WHATEVER YOU DO, THE RESULTS WILL BE LASTING",
-            "KEEP AN OPEN MIND",
-            "IT'S A GOOD TIME TO MAKE PLANS",
-            "IT MAY BE DIFFICULT BUT YOU WILL FIND VALUE IN IT",
-            "IT IS WORTH THE TROUBLE",
-            "THERE WILL BE OBSTACLES TO OVERCOME",
-            "RELATED ISSUES MAY SURFACE",
-            "YOU ARE SURE TO HAVE SUPPORT",
-            "ASSISTANCE WOULD MAKE YOUR PROGRESS A SUCCESS",
-            "COLLABORATION WILL BE THE KEY",
-            "TAKE CHARGE",
-            "IT CANNOT FAIL",
-            "YOU MUST ACT NOW",
-            "RESPECT THE RULES",
-            "GENTLE PERSISTENCE WILL PAY OFF",
-            "YOU WILL NOT BE DISAPPOINTED",
-            "IT MAY ALREADY BE A DONE DEAL",
-            "FOLLOW THROUGH WITH YOUR GOOD INTENTIONS",
-            "DON'T BE PRESSURED INTO ACTING TOO QUICKLY",
-            "DON'T IGNORE THE OBVIOUS",
-            "IF YOU DON'T RESIST",
-            "IT'S NOT WORTH A STRUGGLE",
-            "DON'T FORGET TO HAVE FUN",
-            "DON'T DOUBT IT",
-            "A STRONG COMMITMENT WILL ACHIEVE GOOD RESULTS",
-            "TRY A MORE UNLIKELY SOLUTION",
-            "LEAVE BEHIND OLD SOLUTIONS",
-            "NOT IF YOU'RE ALONE",
-            "MISHAPS ARE HIGHLY PROBABLE",
-            "PRESS FOR CLOSURE",
-            "REALIZE THAT TOO MANY CHOICES IS AS DIFFICULT AS TOO FEW",
-            "LISTEN MORE CAREFULLY; THEN YOU WILL KNOW",
-            "THE ANSWER IS IN YOUR BACKYARD",
-            "LAUGH ABOUT IT",
-            "OTHERS WILL DEPEND ON YOUR CHOICES",
-            "LET IT GO",
-            "THAT WOULD BE A WASTE OF MONEY",
-            "GIVE IT ALL YOU'VE GOT",
-            "YOU DON'T REALLY CARE",
-            "YOU'LL NEED TO CONSIDER OTHER WAYS",
-            "A YEAR FROM NOW IT WON'T MATTER",
-            "DON'T WASTE YOUR TIME",
-            "IT COULD BE EXTRAORDINARY",
-            "COUNT TO TEN; ASK AGAIN",
-            "ACT AS THOUGH IT IS ALREADY REAL",
-            "SETTING PRIORITIES WILL BE A NECESSARY PART OF THE PROCESS",
-            "USE YOUR IMAGINATION",
-            "IT'S GONNA BE GREAT",
-            "TO ENSURE THE BEST DECISION, BE CALM",
-            "YOU'LL HAVE TO MAKE IT UP AS YOU GO",
-            "YOU'LL REGRET IT",
-            "UNQUESTIONABLY",
-            "OF COURSE",
-            "YOU KNOW BETTER NOW THAN EVER BEFORE",
-            "TRUST YOUR INTUITION",
-            "CONSIDER IT AN OPPORTUNITY",
-            "ASK YOUR FATHER",
-            "NEVER",
-            "ASK YOUR MOTHER",
-            "PERHAPS, WHEN YOU'RE OLDER",
-            "ONLY DO IT ONCE",
-            "MAYBE",
-            "NO",
-            "YES"
+            "Your actions will improve things",
+            "Don't bet on it",
+            "Adopt an adventurous attitude",
+            "Follow the advice of experts",
+            "You could find yourself unable to compromise",
+            "Focus on your home life",
+            "Investigate and then enjoy it",
+            "Definitely",
+            "It will remain unpredictable",
+            "Absolutely not",
+            "Explore it with playful curiosity",
+            "Be delightfully sure of it",
+            "Better to wait",
+            "It seems assured",
+            "Do it early",
+            "Keep it to yourself",
+            "Startling events may occur as a result",
+            "The answer may come to you in another language",
+            "You will need to accommodate",
+            "Doubt it",
+            "It will bring good luck",
+            "Be patient",
+            "You will find out everything you'll need to know",
+            "There is a substantial link to another situation",
+            "Watch and see what happens",
+            "It will affect how others see you",
+            "You'll be happy you did",
+            "Get it in writing",
+            "Unfavorable at this time",
+            "Upgrade any way you can",
+            "If you do as you're told",
+            "If it's done well; if not, don't do it at all",
+            "Don't ask for any more at this time",
+            "Avoid the first solution",
+            "You'll get the final word",
+            "Proceed at a more relaxed pace",
+            "The best solution may not be the obvious one",
+            "Remain flexible",
+            "That's out of your control",
+            "Provided you say \"thank you\"",
+            "Enjoy the experience",
+            "Approach cautiously",
+            "Pay attention to the details",
+            "Watch your step as you go",
+            "Speak up about it",
+            "Don't hesitate",
+            "This is a good time to make a new plan",
+            "Move on",
+            "There is no guarantee",
+            "The circumstances will change very quickly",
+            "Don't get caught up in your emotions",
+            "Shift your focus",
+            "It is significant",
+            "Reprioritize what is important",
+            "Make a list of why not",
+            "Don't wait",
+            "It is something you won't forget",
+            "Expect to settle",
+            "Seek out more options",
+            "Follow through on your obligations",
+            "Deal with it later",
+            "Follow someone else's lead",
+            "Make a list of why",
+            "Take a chance",
+            "Accept a change to your routine",
+            "You'll need to take the initiative",
+            "You'll have to compromise",
+            "You'll need more information",
+            "Trust your original thought",
+            "It will create a stir",
+            "Remove your own obstacles",
+            "It would be better to focus on your work",
+            "It will be a pleasure",
+            "Be more generous",
+            "Bet on it",
+            "Finish something else first",
+            "You may have opposition",
+            "You are too close to see",
+            "The situation is unclear",
+            "A substantial effort will be required",
+            "Allow yourself to rest first",
+            "The chance will not come again soon",
+            "Reconsider your approach",
+            "It would be inadvisable",
+            "Wait for a better offer",
+            "Settle it soon",
+            "Yes, but don't force it",
+            "Get a clearer view",
+            "Take a chance",
+            "Now you can",
+            "Don't overdo it",
+            "It will sustain you",
+            "It'll cost you",
+            "It is sure to make things interesting",
+            "Be practical",
+            "Save your energy",
+            "It is certain",
+            "It is uncertain",
+            "The outcome will be positive",
+            "No matter what",
+            "You may have to drop other things",
+            "Don't be concerned",
+            "Prepare for the unexpected",
+            "It is not significant",
+            "Tell someone what it means to you",
+            "Whatever you do, the results will be lasting",
+            "Keep an open mind",
+            "It's a good time to make plans",
+            "It may be difficult but you will find value in it",
+            "It is worth the trouble",
+            "There will be obstacles to overcome",
+            "Related issues may surface",
+            "You are sure to have support",
+            "Assistance would make your progress a success",
+            "Collaboration will be the key",
+            "Take charge",
+            "It cannot fail",
+            "You must act now",
+            "Respect the rules",
+            "Gentle persistence will pay off",
+            "You will not be disappointed",
+            "It may already be a done deal",
+            "Follow through with your good intentions",
+            "Don't be pressured into acting too quickly",
+            "Don't ignore the obvious",
+            "If you don't resist",
+            "It's not worth a struggle",
+            "Don't forget to have fun",
+            "Don't doubt it",
+            "A strong commitment will achieve good results",
+            "Try a more unlikely solution",
+            "Leave behind old solutions",
+            "Not if you're alone",
+            "Mishaps are highly probable",
+            "Press for closure",
+            "Realize that too many choices is as difficult as too few",
+            "Listen more carefully; then you will know",
+            "The answer is in your backyard",
+            "Laugh about it",
+            "Others will depend on your choices",
+            "Let it go",
+            "That would be a waste of money",
+            "Give it all you've got",
+            "You don't really care",
+            "You'll need to consider other ways",
+            "A year from now it won't matter",
+            "Don't waste your time",
+            "It could be extraordinary",
+            "Count to ten; ask again",
+            "Act as though it is already real",
+            "Setting priorities will be a necessary part of the process",
+            "Use your imagination",
+            "It's gonna be great",
+            "To ensure the best decision, be calm",
+            "You'll have to make it up as you go",
+            "You'll regret it",
+            "Unquestionably",
+            "Of course",
+            "You know better now than ever before",
+            "Trust your intuition",
+            "Consider it an opportunity",
+            "Ask your father",
+            "Never",
+            "Ask your mother",
+            "Perhaps, when you're older",
+            "Only do it once",
+            "Maybe",
+            "No",
+            "Yes"
         ];
 
         // Cover images array
