@@ -149,61 +149,6 @@
                 font-size: 14px;
             }
         }
-
-        /* Language toggle button */
-        .lang-toggle {
-            position: fixed;
-            right: 20px;
-            bottom: 120px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #FFFFFF;
-            font-family: Arial, sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        .lang-toggle:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: scale(1.05);
-        }
-
-        .lang-toggle:active {
-            transform: scale(0.95);
-            opacity: 0.8;
-        }
-
-        /* Mobile adjustments for toggle button */
-        @media (max-width: 768px) {
-            .lang-toggle {
-                right: 15px;
-                bottom: 100px;
-                width: 45px;
-                height: 45px;
-                font-size: 14px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .lang-toggle {
-                right: 15px;
-                bottom: 90px;
-                width: 45px;
-                height: 45px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -215,9 +160,6 @@
 
     <!-- Bottom section: 20% -->
     <div class="bottom-text">- LUCKY GENIUS -</div>
-
-    <!-- Language toggle button -->
-    <button class="lang-toggle" id="langToggle">中</button>
 
     <script>
         // All sentences from sentences.txt
@@ -393,63 +335,6 @@
             "Yes"
         ];
 
-        // Chinese translations (mapping English to Chinese)
-        const translations = {
-            "Your actions will improve things": "你的行动会让事情变好",
-            "Don't bet on it": "别指望了",
-            "Adopt an adventurous attitude": "采取冒险的态度",
-            "Follow the advice of experts": "听从专家的建议",
-            "You could find yourself unable to compromise": "你可能无法妥协",
-            "Focus on your home life": "专注于你的家庭生活",
-            "Investigate and then enjoy it": "先调查，然后享受",
-            "Definitely": "绝对可以",
-            "It will remain unpredictable": "它将保持不可预测",
-            "Absolutely not": "绝对不行",
-            "Explore it with playful curiosity": "带着玩乐的好奇心去探索",
-            "Be delightfully sure of it": "对此充满喜悦的确信",
-            "Better to wait": "最好等待",
-            "It seems assured": "看起来有保证",
-            "Do it early": "尽早去做",
-            "Keep it to yourself": "保守秘密",
-            "Startling events may occur as a result": "可能会发生令人震惊的事件",
-            "The answer may come to you in another language": "答案可能以另一种语言出现",
-            "You will need to accommodate": "你需要适应",
-            "Doubt it": "对此表示怀疑",
-            "It will bring good luck": "它会带来好运",
-            "Be patient": "要有耐心",
-            "You will find out everything you'll need to know": "你会了解到所有需要知道的事情",
-            "There is a substantial link to another situation": "与另一种情况有实质性联系",
-            "Watch and see what happens": "观察并看看会发生什么",
-            "It will affect how others see you": "它会影响别人如何看待你",
-            "You'll be happy you did": "你会为此感到高兴",
-            "Get it in writing": "把它写下来",
-            "Unfavorable at this time": "此时不利",
-            "Upgrade any way you can": "尽可能升级",
-            "If you do as you're told": "如果你听话照做",
-            "If it's done well; if not, don't do it at all": "要么做好，要么别做",
-            "Don't ask for any more at this time": "此时不要再索要更多",
-            "Avoid the first solution": "避免第一个解决方案",
-            "You'll get the final word": "你会得到最终决定权",
-            "Proceed at a more relaxed pace": "以更轻松的节奏进行",
-            "The best solution may not be the obvious one": "最好的解决方案可能不是显而易见的",
-            "Remain flexible": "保持灵活",
-            "That's out of your control": "那超出你的控制范围",
-            "Provided you say \"thank you\"": "只要你说"谢谢"",
-            "Enjoy the experience": "享受这个体验",
-            "Approach cautiously": "谨慎对待",
-            "Pay attention to the details": "注意细节",
-            "Watch your step as you go": "小心行事",
-            "Speak up about it": "大声说出来",
-            "Don't hesitate": "不要犹豫",
-            "This is a good time to make a new plan": "现在是制定新计划的好时机",
-            "Move on": "继续前进",
-            "There is no guarantee": "没有保证",
-            "The circumstances will change very quickly": "情况会很快改变",
-            "Maybe": "也许",
-            "No": "不",
-            "Yes": "是的"
-        };
-
         // Cover images array
         const coverImages = [
             'Cover.jpg',
@@ -464,36 +349,9 @@
             'Cover10.jpg'
         ];
 
-        // Current language and sentence
-        let currentLang = 'en';
-        let currentSentence = '';
-
         // Get random item from array
         function getRandomItem(array) {
             return array[Math.floor(Math.random() * array.length)];
-        }
-
-        // Toggle language
-        function toggleLanguage() {
-            const fortuneElement = document.getElementById('fortune');
-            const toggleButton = document.getElementById('langToggle');
-
-            if (currentLang === 'en') {
-                // Switch to Chinese
-                const chineseText = translations[currentSentence];
-                if (chineseText) {
-                    fortuneElement.textContent = chineseText;
-                } else {
-                    fortuneElement.textContent = currentSentence; // Keep English if no translation
-                }
-                toggleButton.textContent = 'EN';
-                currentLang = 'zh';
-            } else {
-                // Switch back to English
-                fortuneElement.textContent = currentSentence;
-                toggleButton.textContent = '中';
-                currentLang = 'en';
-            }
         }
 
         // Preload image and initialize page
@@ -507,11 +365,9 @@
                 // Set background image
                 document.body.style.backgroundImage = `url('${randomCover}')`;
 
-                // Set random fortune sentence (English)
-                currentSentence = getRandomItem(sentences);
-                currentLang = 'en';
-                document.getElementById('fortune').textContent = currentSentence;
-                document.getElementById('langToggle').textContent = '中';
+                // Set random fortune sentence
+                const randomSentence = getRandomItem(sentences);
+                document.getElementById('fortune').textContent = randomSentence;
 
                 // Fade in the page
                 document.body.classList.add('loaded');
@@ -527,9 +383,6 @@
         } else {
             initializePage();
         }
-
-        // Add click event to language toggle button
-        document.getElementById('langToggle').addEventListener('click', toggleLanguage);
     </script>
 </body>
 </html>
