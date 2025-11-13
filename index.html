@@ -149,53 +149,6 @@
                 font-size: 14px;
             }
         }
-
-        /* Translation button - Step 1: Display only */
-        .translate-btn {
-            position: fixed;
-            right: 20px;
-            bottom: 120px;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.15);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: #FFFFFF;
-            font-size: 14px;
-            font-family: Arial, sans-serif;
-            font-weight: normal;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-        }
-
-        .translate-btn:hover {
-            background: rgba(255, 255, 255, 0.25);
-        }
-
-        /* Mobile adjustments */
-        @media (max-width: 768px) {
-            .translate-btn {
-                right: 15px;
-                bottom: 100px;
-                width: 45px;
-                height: 45px;
-                font-size: 13px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .translate-btn {
-                right: 15px;
-                bottom: 90px;
-            }
-        }
     </style>
 </head>
 <body>
@@ -207,9 +160,6 @@
 
     <!-- Bottom section: 20% -->
     <div class="bottom-text">- LUCKY GENIUS -</div>
-
-    <!-- Translation button - Step 1: Display only -->
-    <button class="translate-btn" id="translateBtn">中</button>
 
     <script>
         // All sentences from sentences.txt
@@ -399,215 +349,9 @@
             'Cover10.jpg'
         ];
 
-        // Step 2: Translation state
-        let isEnglish = true;
-        let currentEnglishSentence = '';
-
-        // Step 3: Complete translation dictionary (all 169 sentences)
-        const translations = {
-            "Your actions will improve things": "你的行动会让事情变好",
-            "Don't bet on it": "别指望了",
-            "Adopt an adventurous attitude": "采取冒险的态度",
-            "Follow the advice of experts": "听从专家的建议",
-            "You could find yourself unable to compromise": "你可能无法妥协",
-            "Focus on your home life": "专注于你的家庭生活",
-            "Investigate and then enjoy it": "先调查，然后享受",
-            "Definitely": "绝对可以",
-            "It will remain unpredictable": "它将保持不可预测",
-            "Absolutely not": "绝对不行",
-            "Explore it with playful curiosity": "带着玩乐的好奇心去探索",
-            "Be delightfully sure of it": "对此充满喜悦的确信",
-            "Better to wait": "最好等待",
-            "It seems assured": "看起来有保证",
-            "Do it early": "尽早去做",
-            "Keep it to yourself": "保守秘密",
-            "Startling events may occur as a result": "可能会发生令人震惊的事件",
-            "The answer may come to you in another language": "答案可能以另一种语言出现",
-            "You will need to accommodate": "你需要适应",
-            "Doubt it": "对此表示怀疑",
-            "It will bring good luck": "它会带来好运",
-            "Be patient": "要有耐心",
-            "You will find out everything you'll need to know": "你会了解到所有需要知道的事情",
-            "There is a substantial link to another situation": "与另一种情况有实质性联系",
-            "Watch and see what happens": "观察并看看会发生什么",
-            "It will affect how others see you": "它会影响别人如何看待你",
-            "You'll be happy you did": "你会为此感到高兴",
-            "Get it in writing": "把它写下来",
-            "Unfavorable at this time": "此时不利",
-            "Upgrade any way you can": "尽可能升级",
-            "If you do as you're told": "如果你听话照做",
-            "If it's done well; if not, don't do it at all": "要么做好，要么别做",
-            "Don't ask for any more at this time": "此时不要再索要更多",
-            "Avoid the first solution": "避免第一个解决方案",
-            "You'll get the final word": "你会得到最终决定权",
-            "Proceed at a more relaxed pace": "以更轻松的节奏进行",
-            "The best solution may not be the obvious one": "最好的解决方案可能不是显而易见的",
-            "Remain flexible": "保持灵活",
-            "That's out of your control": "那超出你的控制范围",
-            "Provided you say \"thank you\"": "只要你说"谢谢"",
-            "Enjoy the experience": "享受这个体验",
-            "Approach cautiously": "谨慎对待",
-            "Pay attention to the details": "注意细节",
-            "Watch your step as you go": "小心行事",
-            "Speak up about it": "大声说出来",
-            "Don't hesitate": "不要犹豫",
-            "This is a good time to make a new plan": "现在是制定新计划的好时机",
-            "Move on": "继续前进",
-            "There is no guarantee": "没有保证",
-            "The circumstances will change very quickly": "情况会很快改变",
-            "Don't get caught up in your emotions": "不要陷入情绪之中",
-            "Shift your focus": "转移你的注意力",
-            "It is significant": "这很重要",
-            "Reprioritize what is important": "重新确定优先级",
-            "Make a list of why not": "列出为什么不的理由",
-            "Don't wait": "不要等待",
-            "It is something you won't forget": "这是你不会忘记的事",
-            "Expect to settle": "准备好妥协",
-            "Seek out more options": "寻找更多选择",
-            "Follow through on your obligations": "履行你的义务",
-            "Deal with it later": "稍后处理",
-            "Follow someone else's lead": "跟随别人的领导",
-            "Make a list of why": "列出理由",
-            "Take a chance": "冒险一试",
-            "Accept a change to your routine": "接受日常的改变",
-            "You'll need to take the initiative": "你需要主动出击",
-            "You'll have to compromise": "你必须妥协",
-            "You'll need more information": "你需要更多信息",
-            "Trust your original thought": "相信你最初的想法",
-            "It will create a stir": "它会引起轰动",
-            "Remove your own obstacles": "移除你自己的障碍",
-            "It would be better to focus on your work": "最好专注于你的工作",
-            "It will be a pleasure": "这将是一件乐事",
-            "Be more generous": "更慷慨一些",
-            "Bet on it": "押注于此",
-            "Finish something else first": "先完成其他事情",
-            "You may have opposition": "你可能会遇到反对",
-            "You are too close to see": "你离得太近看不清",
-            "The situation is unclear": "情况不明朗",
-            "A substantial effort will be required": "需要付出大量努力",
-            "Allow yourself to rest first": "先让自己休息一下",
-            "The chance will not come again soon": "机会不会很快再来",
-            "Reconsider your approach": "重新考虑你的方法",
-            "It would be inadvisable": "这是不明智的",
-            "Wait for a better offer": "等待更好的机会",
-            "Settle it soon": "尽快解决",
-            "Yes, but don't force it": "可以，但不要强求",
-            "Get a clearer view": "看得更清楚一些",
-            "Now you can": "现在你可以了",
-            "Don't overdo it": "不要过度",
-            "It will sustain you": "它会支撑你",
-            "It'll cost you": "这会让你付出代价",
-            "It is sure to make things interesting": "这肯定会让事情变得有趣",
-            "Be practical": "要实际一些",
-            "Save your energy": "保存你的精力",
-            "It is certain": "这是确定的",
-            "It is uncertain": "这是不确定的",
-            "The outcome will be positive": "结果将是积极的",
-            "No matter what": "无论如何",
-            "You may have to drop other things": "你可能不得不放弃其他事情",
-            "Don't be concerned": "不要担心",
-            "Prepare for the unexpected": "为意外做好准备",
-            "It is not significant": "这并不重要",
-            "Tell someone what it means to you": "告诉别人这对你意味着什么",
-            "Whatever you do, the results will be lasting": "无论你做什么，结果都会持久",
-            "Keep an open mind": "保持开放的心态",
-            "It's a good time to make plans": "现在是制定计划的好时机",
-            "It may be difficult but you will find value in it": "可能很难，但你会发现价值",
-            "It is worth the trouble": "这值得付出努力",
-            "There will be obstacles to overcome": "会有障碍需要克服",
-            "Related issues may surface": "相关问题可能会浮出水面",
-            "You are sure to have support": "你肯定会得到支持",
-            "Assistance would make your progress a success": "帮助会让你的进展成功",
-            "Collaboration will be the key": "合作将是关键",
-            "Take charge": "掌控局面",
-            "It cannot fail": "不会失败",
-            "You must act now": "你必须现在行动",
-            "Respect the rules": "尊重规则",
-            "Gentle persistence will pay off": "温和的坚持会有回报",
-            "You will not be disappointed": "你不会失望",
-            "It may already be a done deal": "这可能已经是既成事实",
-            "Follow through with your good intentions": "贯彻你的良好意图",
-            "Don't be pressured into acting too quickly": "不要被迫过快行动",
-            "Don't ignore the obvious": "不要忽视显而易见的事",
-            "If you don't resist": "如果你不抗拒",
-            "It's not worth a struggle": "不值得斗争",
-            "Don't forget to have fun": "别忘了享受乐趣",
-            "Don't doubt it": "不要怀疑",
-            "A strong commitment will achieve good results": "坚定的承诺会取得好结果",
-            "Try a more unlikely solution": "尝试一个不太可能的解决方案",
-            "Leave behind old solutions": "抛弃旧的解决方案",
-            "Not if you're alone": "如果你独自一人就不行",
-            "Mishaps are highly probable": "很可能会出现意外",
-            "Press for closure": "力求结束",
-            "Realize that too many choices is as difficult as too few": "意识到选择太多和太少一样困难",
-            "Listen more carefully; then you will know": "更仔细地倾听，然后你就会知道",
-            "The answer is in your backyard": "答案就在你的后院",
-            "Laugh about it": "对此一笑而过",
-            "Others will depend on your choices": "别人会依赖你的选择",
-            "Let it go": "放手吧",
-            "That would be a waste of money": "那会浪费钱",
-            "Give it all you've got": "全力以赴",
-            "You don't really care": "你并不真的在意",
-            "You'll need to consider other ways": "你需要考虑其他方法",
-            "A year from now it won't matter": "一年后这不重要",
-            "Don't waste your time": "不要浪费时间",
-            "It could be extraordinary": "这可能会非同寻常",
-            "Count to ten; ask again": "数到十；再问一次",
-            "Act as though it is already real": "表现得好像它已经是真的",
-            "Setting priorities will be a necessary part of the process": "设定优先级将是过程的必要部分",
-            "Use your imagination": "运用你的想象力",
-            "It's gonna be great": "这会很棒",
-            "To ensure the best decision, be calm": "为确保做出最佳决定，保持冷静",
-            "You'll have to make it up as you go": "你必须边做边想",
-            "You'll regret it": "你会后悔的",
-            "Unquestionably": "毫无疑问",
-            "Of course": "当然",
-            "You know better now than ever before": "你现在比以往任何时候都更清楚",
-            "Trust your intuition": "相信你的直觉",
-            "Consider it an opportunity": "把它当作一个机会",
-            "Ask your father": "问问你的父亲",
-            "Never": "永远不要",
-            "Ask your mother": "问问你的母亲",
-            "Perhaps, when you're older": "也许，当你年长一些",
-            "Only do it once": "只做一次",
-            "Maybe": "也许",
-            "No": "不",
-            "Yes": "是的"
-        };
-
         // Get random item from array
         function getRandomItem(array) {
             return array[Math.floor(Math.random() * array.length)];
-        }
-
-        // Step 2 & 3: Toggle language function with translation
-        function toggleLanguage() {
-            const translateBtn = document.getElementById('translateBtn');
-            const fortuneElement = document.getElementById('fortune');
-
-            if (isEnglish) {
-                // Switch to Chinese
-                const chineseText = translations[currentEnglishSentence];
-
-                if (chineseText) {
-                    // Translation exists, show Chinese
-                    fortuneElement.textContent = chineseText;
-                    console.log('Translated to:', chineseText);
-                } else {
-                    // No translation, keep English
-                    fortuneElement.textContent = currentEnglishSentence;
-                    console.log('No translation available, keeping English');
-                }
-
-                translateBtn.textContent = 'EN';
-                isEnglish = false;
-            } else {
-                // Switch back to English
-                fortuneElement.textContent = currentEnglishSentence;
-                translateBtn.textContent = '中';
-                isEnglish = true;
-                console.log('Switched back to English');
-            }
         }
 
         // Preload image and initialize page
@@ -623,7 +367,6 @@
 
                 // Set random fortune sentence
                 const randomSentence = getRandomItem(sentences);
-                currentEnglishSentence = randomSentence; // Step 2: Save current sentence
                 document.getElementById('fortune').textContent = randomSentence;
 
                 // Fade in the page
@@ -640,15 +383,6 @@
         } else {
             initializePage();
         }
-
-        // Step 2: Add click event to translate button
-        document.addEventListener('DOMContentLoaded', function() {
-            const translateBtn = document.getElementById('translateBtn');
-            if (translateBtn) {
-                translateBtn.addEventListener('click', toggleLanguage);
-                console.log('Translation button initialized');
-            }
-        });
     </script>
 </body>
 </html>
