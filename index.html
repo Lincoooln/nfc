@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Book of Answers - NFC Divination</title>
+    <title>Fortune Bracelet - DOMAIN</title>
     <style>
         * {
             margin: 0;
@@ -12,76 +12,88 @@
         }
 
         body {
-            font-family: 'Georgia', serif;
             min-height: 100vh;
             display: flex;
+            flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            padding: 20px;
-            overflow: hidden;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            padding: 40px 20px;
+            position: relative;
         }
 
-        /* Animated background particles */
-        .background {
-            position: fixed;
+        /* Dark overlay for better text readability */
+        body::before {
+            content: '';
+            position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(0, 0, 0, 0.3);
             z-index: 0;
-            overflow: hidden;
-        }
-
-        .particle {
-            position: absolute;
-            width: 4px;
-            height: 4px;
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            animation: float 15s infinite;
-        }
-
-        @keyframes float {
-            0%, 100% {
-                transform: translateY(0) translateX(0);
-                opacity: 0;
-            }
-            10% {
-                opacity: 1;
-            }
-            90% {
-                opacity: 1;
-            }
-            100% {
-                transform: translateY(-100vh) translateX(100px);
-                opacity: 0;
-            }
         }
 
         .container {
             position: relative;
             z-index: 1;
             width: 100%;
-            max-width: 600px;
+            max-width: 1200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            gap: 40px;
         }
 
-        .card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 50px 40px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            text-align: center;
+        /* Top text: FORTUNE BRACELET */
+        .top-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-size: 48pt;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
             animation: fadeIn 1s ease-out;
-            position: relative;
-            overflow: hidden;
+        }
+
+        /* Middle text: Fortune sentence with gradient */
+        .middle-text {
+            font-family: 'Times New Roman', Times, serif;
+            font-weight: bold;
+            font-style: italic;
+            font-size: 72pt;
+            color: #fbf7bc;
+            background: linear-gradient(90deg, #fbf7bc 0%, #fff9d4 50%, #fbf7bc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.7);
+            line-height: 1.3;
+            max-width: 90%;
+            animation: slideIn 1.2s ease-out;
+        }
+
+        /* Bottom text: DOMAIN */
+        .bottom-text {
+            font-family: Arial, sans-serif;
+            font-weight: bold;
+            font-size: 40pt;
+            color: #000000;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.5);
+            animation: fadeIn 1.5s ease-out;
         }
 
         @keyframes fadeIn {
             from {
                 opacity: 0;
-                transform: translateY(30px);
+                transform: translateY(-20px);
             }
             to {
                 opacity: 1;
@@ -89,51 +101,10 @@
             }
         }
 
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
-            animation: shine 3s infinite;
-        }
-
-        @keyframes shine {
-            0% {
-                left: -100%;
-            }
-            50%, 100% {
-                left: 100%;
-            }
-        }
-
-        .title {
-            font-size: 1.5rem;
-            color: #667eea;
-            margin-bottom: 30px;
-            font-weight: normal;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            opacity: 0.8;
-        }
-
-        .answer {
-            font-size: 2rem;
-            line-height: 1.6;
-            color: #2d3748;
-            margin: 40px 0;
-            font-style: italic;
-            position: relative;
-            z-index: 1;
-            animation: slideIn 0.8s ease-out;
-        }
-
         @keyframes slideIn {
             from {
                 opacity: 0;
-                transform: scale(0.9);
+                transform: scale(0.95);
             }
             to {
                 opacity: 1;
@@ -141,294 +112,273 @@
             }
         }
 
-        .answer::before,
-        .answer::after {
-            content: '"';
-            font-size: 3rem;
-            color: #667eea;
-            opacity: 0.3;
-        }
-
-        .refresh-btn {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 15px 40px;
-            font-size: 1rem;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            font-family: 'Georgia', serif;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            margin-top: 20px;
-        }
-
-        .refresh-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .refresh-btn:active {
-            transform: translateY(0);
-        }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.9rem;
-            color: rgba(255, 255, 255, 0.8);
-            text-align: center;
-        }
-
-        .lang-switch {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 10;
-        }
-
-        .lang-btn {
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 15px;
-            margin: 0 5px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .lang-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .lang-btn.active {
-            background: white;
-            color: #667eea;
-        }
-
         /* Mobile responsive */
         @media (max-width: 768px) {
-            .card {
-                padding: 40px 30px;
+            .top-text {
+                font-size: 32pt;
             }
 
-            .title {
-                font-size: 1.2rem;
+            .middle-text {
+                font-size: 48pt;
+                max-width: 95%;
             }
 
-            .answer {
-                font-size: 1.5rem;
-                margin: 30px 0;
+            .bottom-text {
+                font-size: 28pt;
             }
 
-            .answer::before,
-            .answer::after {
-                font-size: 2rem;
-            }
-
-            .refresh-btn {
-                padding: 12px 30px;
-                font-size: 0.9rem;
+            .container {
+                gap: 30px;
             }
         }
 
         @media (max-width: 480px) {
-            .card {
-                padding: 30px 20px;
-                border-radius: 15px;
+            body {
+                padding: 20px 15px;
             }
 
-            .answer {
-                font-size: 1.3rem;
+            .top-text {
+                font-size: 24pt;
             }
 
-            .lang-switch {
-                top: 10px;
-                right: 10px;
+            .middle-text {
+                font-size: 36pt;
             }
 
-            .lang-btn {
-                padding: 6px 12px;
-                font-size: 0.85rem;
+            .bottom-text {
+                font-size: 20pt;
+            }
+
+            .container {
+                gap: 25px;
+            }
+        }
+
+        /* Extra small screens */
+        @media (max-width: 360px) {
+            .top-text {
+                font-size: 20pt;
+            }
+
+            .middle-text {
+                font-size: 28pt;
+            }
+
+            .bottom-text {
+                font-size: 18pt;
             }
         }
     </style>
 </head>
 <body>
-    <div class="background" id="background"></div>
-
-    <div class="lang-switch">
-        <button class="lang-btn active" onclick="setLanguage('en')">EN</button>
-        <button class="lang-btn" onclick="setLanguage('zh')">中文</button>
-    </div>
-
     <div class="container">
-        <div class="card">
-            <h1 class="title" id="title">The Book of Answers</h1>
-            <p class="answer" id="answer">Loading your answer...</p>
-            <button class="refresh-btn" onclick="getNewAnswer()" id="refreshBtn">Get Another Answer</button>
-        </div>
-        <div class="footer">
-            <p id="footerText">Tap the card when you have a question in mind</p>
-        </div>
+        <div class="top-text">FORTUNE BRACELET</div>
+        <div class="middle-text" id="fortune">Loading...</div>
+        <div class="bottom-text">DOMAIN</div>
     </div>
 
     <script>
-        // Sample answers - Replace these with actual quotes from "The Book of Answers"
-        const answers = {
-            en: [
-                "Yes, definitely.",
-                "Trust your intuition.",
-                "The time is not right.",
-                "Go for it.",
-                "Wait and see.",
-                "Follow your heart.",
-                "The answer is within you.",
-                "Take a chance.",
-                "Be patient.",
-                "Now is the perfect time.",
-                "Look for a sign.",
-                "The outcome will surprise you.",
-                "Believe in yourself.",
-                "Step back and reflect.",
-                "Move forward with confidence.",
-                "Listen to your inner voice.",
-                "The universe is guiding you.",
-                "Not yet, but soon.",
-                "Absolutely yes.",
-                "Consider all perspectives.",
-                "Trust the process.",
-                "It's worth the risk.",
-                "Slow down and reconsider.",
-                "Your answer is coming.",
-                "The path will reveal itself.",
-                "Embrace the uncertainty.",
-                "You already know the answer.",
-                "Seek wisdom from others.",
-                "The stars are aligned.",
-                "Let go and trust."
-            ],
-            zh: [
-                "是的，毫无疑问。",
-                "相信你的直觉。",
-                "时机未到。",
-                "大胆去做吧。",
-                "等待观望。",
-                "跟随你的心。",
-                "答案就在你心中。",
-                "抓住机会。",
-                "保持耐心。",
-                "现在是完美时机。",
-                "寻找一个征兆。",
-                "结果会让你惊喜。",
-                "相信你自己。",
-                "退一步反思。",
-                "自信地向前走。",
-                "倾听你内心的声音。",
-                "宇宙在指引你。",
-                "还不是时候，但很快。",
-                "绝对可以。",
-                "考虑所有角度。",
-                "相信这个过程。",
-                "值得冒险。",
-                "放慢脚步重新考虑。",
-                "你的答案即将到来。",
-                "道路会自己显现。",
-                "拥抱不确定性。",
-                "你已经知道答案了。",
-                "向他人寻求智慧。",
-                "星星已经排列好了。",
-                "放手并相信。"
-            ]
-        };
+        // All sentences from sentences.txt
+        const sentences = [
+            "YOUR ACTIONS WILL IMPROVE THINGS",
+            "DON'T BET ON IT",
+            "ADOPT AN ADVENTUROUS ATTITUDE",
+            "FOLLOW THE ADVICE OF EXPERTS",
+            "YOU COULD FIND YOURSELF UNABLE TO COMPROMISE",
+            "FOCUS ON YOUR HOME LIFE",
+            "INVESTIGATE AND THEN ENJOY IT",
+            "DEFINITELY",
+            "IT WILL REMAIN UNPREDICTABLE",
+            "ABSOLUTELY NOT",
+            "EXPLORE IT WITH PLAYFUL CURIOSITY",
+            "BE DELIGHTFULLY SURE OF IT",
+            "BETTER TO WAIT",
+            "IT SEEMS ASSURED",
+            "DO IT EARLY",
+            "KEEP IT TO YOURSELF",
+            "STARTLING EVENTS MAY OCCUR AS A RESULT",
+            "THE ANSWER MAY COME TO YOU IN ANOTHER LANGUAGE",
+            "YOU WILL NEED TO ACCOMMODATE",
+            "DOUBT IT",
+            "IT WILL BRING GOOD LUCK",
+            "BE PATIENT",
+            "YOU WILL FIND OUT EVERYTHING YOU'LL NEED TO KNOW",
+            "THERE IS A SUBSTANTIAL LINK TO ANOTHER SITUATION",
+            "WATCH AND SEE WHAT HAPPENS",
+            "IT WILL AFFECT HOW OTHERS SEE YOU",
+            "YOU'LL BE HAPPY YOU DID",
+            "GET IT IN WRITING",
+            "UNFAVORABLE AT THIS TIME",
+            "UPGRADE ANY WAY YOU CAN",
+            "IF YOU DO AS YOU'RE TOLD",
+            "IF IT'S DONE WELL; IF NOT, DON'T DO IT AT ALL",
+            "DON'T ASK FOR ANY MORE AT THIS TIME",
+            "AVOID THE FIRST SOLUTION",
+            "YOU'LL GET THE FINAL WORD",
+            "PROCEED AT A MORE RELAXED PACE",
+            "THE BEST SOLUTION MAY NOT BE THE OBVIOUS ONE",
+            "REMAIN FLEXIBLE",
+            "THAT'S OUT OF YOUR CONTROL",
+            "PROVIDED YOU SAY \"THANK YOU\"",
+            "ENJOY THE EXPERIENCE",
+            "APPROACH CAUTIOUSLY",
+            "PAY ATTENTION TO THE DETAILS",
+            "WATCH YOUR STEP AS YOU GO",
+            "SPEAK UP ABOUT IT",
+            "DON'T HESITATE",
+            "THIS IS A GOOD TIME TO MAKE A NEW PLAN",
+            "MOVE ON",
+            "THERE IS NO GUARANTEE",
+            "THE CIRCUMSTANCES WILL CHANGE VERY QUICKLY",
+            "DON'T GET CAUGHT UP IN YOUR EMOTIONS",
+            "SHIFT YOUR FOCUS",
+            "IT IS SIGNIFICANT",
+            "REPRIORITIZE WHAT IS IMPORTANT",
+            "MAKE A LIST OF WHY NOT",
+            "DON'T WAIT",
+            "IT IS SOMETHING YOU WON'T FORGET",
+            "EXPECT TO SETTLE",
+            "SEEK OUT MORE OPTIONS",
+            "FOLLOW THROUGH ON YOUR OBLIGATIONS",
+            "DEAL WITH IT LATER",
+            "FOLLOW SOMEONE ELSE'S LEAD",
+            "MAKE A LIST OF WHY",
+            "TAKE A CHANCE",
+            "ACCEPT A CHANGE TO YOUR ROUTINE",
+            "YOU'LL NEED TO TAKE THE INITIATIVE",
+            "YOU'LL HAVE TO COMPROMISE",
+            "YOU'LL NEED MORE INFORMATION",
+            "TRUST YOUR ORIGINAL THOUGHT",
+            "IT WILL CREATE A STIR",
+            "REMOVE YOUR OWN OBSTACLES",
+            "IT WOULD BE BETTER TO FOCUS ON YOUR WORK",
+            "IT WILL BE A PLEASURE",
+            "BE MORE GENEROUS",
+            "BET ON IT",
+            "FINISH SOMETHING ELSE FIRST",
+            "YOU MAY HAVE OPPOSITION",
+            "YOU ARE TOO CLOSE TO SEE",
+            "THE SITUATION IS UNCLEAR",
+            "A SUBSTANTIAL EFFORT WILL BE REQUIRED",
+            "ALLOW YOURSELF TO REST FIRST",
+            "THE CHANCE WILL NOT COME AGAIN SOON",
+            "RECONSIDER YOUR APPROACH",
+            "IT WOULD BE INADVISABLE",
+            "WAIT FOR A BETTER OFFER",
+            "SETTLE IT SOON",
+            "YES, BUT DON'T FORCE IT",
+            "GET A CLEARER VIEW",
+            "TAKE A CHANCE",
+            "NOW YOU CAN",
+            "DON'T OVERDO IT",
+            "IT WILL SUSTAIN YOU",
+            "IT'LL COST YOU",
+            "IT IS SURE TO MAKE THINGS INTERESTING",
+            "BE PRACTICAL",
+            "SAVE YOUR ENERGY",
+            "IT IS CERTAIN",
+            "IT IS UNCERTAIN",
+            "THE OUTCOME WILL BE POSITIVE",
+            "NO MATTER WHAT",
+            "YOU MAY HAVE TO DROP OTHER THINGS",
+            "DON'T BE CONCERNED",
+            "PREPARE FOR THE UNEXPECTED",
+            "IT IS NOT SIGNIFICANT",
+            "TELL SOMEONE WHAT IT MEANS TO YOU",
+            "WHATEVER YOU DO, THE RESULTS WILL BE LASTING",
+            "KEEP AN OPEN MIND",
+            "IT'S A GOOD TIME TO MAKE PLANS",
+            "IT MAY BE DIFFICULT BUT YOU WILL FIND VALUE IN IT",
+            "IT IS WORTH THE TROUBLE",
+            "THERE WILL BE OBSTACLES TO OVERCOME",
+            "RELATED ISSUES MAY SURFACE",
+            "YOU ARE SURE TO HAVE SUPPORT",
+            "ASSISTANCE WOULD MAKE YOUR PROGRESS A SUCCESS",
+            "COLLABORATION WILL BE THE KEY",
+            "TAKE CHARGE",
+            "IT CANNOT FAIL",
+            "YOU MUST ACT NOW",
+            "RESPECT THE RULES",
+            "GENTLE PERSISTENCE WILL PAY OFF",
+            "YOU WILL NOT BE DISAPPOINTED",
+            "IT MAY ALREADY BE A DONE DEAL",
+            "FOLLOW THROUGH WITH YOUR GOOD INTENTIONS",
+            "DON'T BE PRESSURED INTO ACTING TOO QUICKLY",
+            "DON'T IGNORE THE OBVIOUS",
+            "IF YOU DON'T RESIST",
+            "IT'S NOT WORTH A STRUGGLE",
+            "DON'T FORGET TO HAVE FUN",
+            "DON'T DOUBT IT",
+            "A STRONG COMMITMENT WILL ACHIEVE GOOD RESULTS",
+            "TRY A MORE UNLIKELY SOLUTION",
+            "LEAVE BEHIND OLD SOLUTIONS",
+            "NOT IF YOU'RE ALONE",
+            "MISHAPS ARE HIGHLY PROBABLE",
+            "PRESS FOR CLOSURE",
+            "REALIZE THAT TOO MANY CHOICES IS AS DIFFICULT AS TOO FEW",
+            "LISTEN MORE CAREFULLY; THEN YOU WILL KNOW",
+            "THE ANSWER IS IN YOUR BACKYARD",
+            "LAUGH ABOUT IT",
+            "OTHERS WILL DEPEND ON YOUR CHOICES",
+            "LET IT GO",
+            "THAT WOULD BE A WASTE OF MONEY",
+            "GIVE IT ALL YOU'VE GOT",
+            "YOU DON'T REALLY CARE",
+            "YOU'LL NEED TO CONSIDER OTHER WAYS",
+            "A YEAR FROM NOW IT WON'T MATTER",
+            "DON'T WASTE YOUR TIME",
+            "IT COULD BE EXTRAORDINARY",
+            "COUNT TO TEN; ASK AGAIN",
+            "ACT AS THOUGH IT IS ALREADY REAL",
+            "SETTING PRIORITIES WILL BE A NECESSARY PART OF THE PROCESS",
+            "USE YOUR IMAGINATION",
+            "IT'S GONNA BE GREAT",
+            "TO ENSURE THE BEST DECISION, BE CALM",
+            "YOU'LL HAVE TO MAKE IT UP AS YOU GO",
+            "YOU'LL REGRET IT",
+            "UNQUESTIONABLY",
+            "OF COURSE",
+            "YOU KNOW BETTER NOW THAN EVER BEFORE",
+            "TRUST YOUR INTUITION",
+            "CONSIDER IT AN OPPORTUNITY",
+            "ASK YOUR FATHER",
+            "NEVER",
+            "ASK YOUR MOTHER",
+            "PERHAPS, WHEN YOU'RE OLDER",
+            "ONLY DO IT ONCE",
+            "MAYBE",
+            "NO",
+            "YES"
+        ];
 
-        const translations = {
-            en: {
-                title: "The Book of Answers",
-                refreshBtn: "Get Another Answer",
-                footer: "Tap the card when you have a question in mind"
-            },
-            zh: {
-                title: "答案之书",
-                refreshBtn: "获取新答案",
-                footer: "心中想着你的问题，然后点击卡片"
-            }
-        };
+        // Cover images array
+        const coverImages = [
+            'Cover.jpg',
+            'Cover2.jpg',
+            'Cover3.jpg',
+            'Cover4.jpg',
+            'Cover5.jpg',
+            'Cover6.jpg',
+            'Cover7.jpg',
+            'Cover8.jpg',
+            'Cover9.jpg',
+            'Cover10.jpg'
+        ];
 
-        let currentLang = 'en';
-        let lastIndex = -1;
-
-        // Create floating particles
-        function createParticles() {
-            const background = document.getElementById('background');
-            for (let i = 0; i < 30; i++) {
-                const particle = document.createElement('div');
-                particle.className = 'particle';
-                particle.style.left = Math.random() * 100 + '%';
-                particle.style.animationDelay = Math.random() * 15 + 's';
-                particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-                background.appendChild(particle);
-            }
+        // Function to get random item from array
+        function getRandomItem(array) {
+            return array[Math.floor(Math.random() * array.length)];
         }
 
-        function getRandomAnswer() {
-            const currentAnswers = answers[currentLang];
-            let randomIndex;
-
-            // Ensure we don't get the same answer twice in a row
-            do {
-                randomIndex = Math.floor(Math.random() * currentAnswers.length);
-            } while (randomIndex === lastIndex && currentAnswers.length > 1);
-
-            lastIndex = randomIndex;
-            return currentAnswers[randomIndex];
-        }
-
-        function getNewAnswer() {
-            const answerElement = document.getElementById('answer');
-
-            // Add animation
-            answerElement.style.animation = 'none';
-            setTimeout(() => {
-                answerElement.style.animation = 'slideIn 0.8s ease-out';
-            }, 10);
-
-            answerElement.textContent = getRandomAnswer();
-        }
-
-        function setLanguage(lang) {
-            currentLang = lang;
-
-            // Update button states
-            document.querySelectorAll('.lang-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            event.target.classList.add('active');
-
-            // Update text content
-            document.getElementById('title').textContent = translations[lang].title;
-            document.getElementById('refreshBtn').textContent = translations[lang].refreshBtn;
-            document.getElementById('footerText').textContent = translations[lang].footer;
-
-            // Get new answer in selected language
-            getNewAnswer();
-        }
-
-        // Initialize
+        // Initialize page on load
         window.addEventListener('DOMContentLoaded', () => {
-            createParticles();
-            getNewAnswer();
-        });
+            // Set random background image
+            const randomCover = getRandomItem(coverImages);
+            document.body.style.backgroundImage = `url('${randomCover}')`;
 
-        // Allow clicking the card to get a new answer (for better mobile UX)
-        document.querySelector('.card').addEventListener('click', (e) => {
-            if (e.target.tagName !== 'BUTTON') {
-                getNewAnswer();
-            }
+            // Set random fortune sentence
+            const randomSentence = getRandomItem(sentences);
+            document.getElementById('fortune').textContent = randomSentence;
         });
     </script>
 </body>
