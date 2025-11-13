@@ -2,7 +2,9 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <title>Fortune Bracelet - Lucky Genius</title>
     <style>
         * {
@@ -13,6 +15,7 @@
 
         body {
             min-height: 100vh;
+            min-height: -webkit-fill-available; /* iOS Safari fix */
             display: flex;
             flex-direction: column;
             justify-content: space-between;
@@ -20,9 +23,14 @@
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            padding: 80px 20px 60px;
+            padding: 60px 20px 80px;
+            padding-bottom: calc(80px + env(safe-area-inset-bottom));
             position: relative;
             font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+
+        html {
+            height: -webkit-fill-available;
         }
 
         /* Semi-transparent dark overlay for better text readability */
@@ -48,6 +56,7 @@
             align-items: center;
             text-align: center;
             flex: 1;
+            min-height: 0; /* Allow flex item to shrink */
         }
 
         /* Top text: FORTUNE BRACELET */
@@ -121,7 +130,8 @@
         /* Mobile responsive */
         @media (max-width: 768px) {
             body {
-                padding: 60px 20px 50px;
+                padding: 50px 20px 90px;
+                padding-bottom: calc(90px + env(safe-area-inset-bottom));
             }
 
             .top-text {
@@ -142,7 +152,8 @@
 
         @media (max-width: 480px) {
             body {
-                padding: 50px 15px 40px;
+                padding: 40px 15px 100px;
+                padding-bottom: calc(100px + env(safe-area-inset-bottom));
             }
 
             .top-text {
@@ -162,6 +173,11 @@
         }
 
         @media (max-width: 360px) {
+            body {
+                padding: 35px 15px 110px;
+                padding-bottom: calc(110px + env(safe-area-inset-bottom));
+            }
+
             .top-text {
                 font-size: 20px;
             }
@@ -178,7 +194,8 @@
         /* Landscape orientation adjustments */
         @media (max-height: 600px) and (orientation: landscape) {
             body {
-                padding: 40px 20px 30px;
+                padding: 30px 20px 70px;
+                padding-bottom: calc(70px + env(safe-area-inset-bottom));
             }
 
             .top-text {
@@ -192,6 +209,18 @@
 
             .bottom-text {
                 font-size: 15px;
+            }
+
+            .middle-container {
+                flex: 1;
+                min-height: 0;
+            }
+        }
+
+        /* iOS specific fixes */
+        @supports (-webkit-touch-callout: none) {
+            body {
+                min-height: -webkit-fill-available;
             }
         }
     </style>
